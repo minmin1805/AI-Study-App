@@ -1,6 +1,6 @@
 import { db } from "@/configs/db";
 import { inngest } from "./client";
-import { USER_TABLE } from "@/configs/schema";
+import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, USER_TABLE } from "@/configs/schema";
 import { eq } from "drizzle-orm";
 import { generateNotesAiModel } from "@/configs/AiModel";
 
@@ -13,6 +13,7 @@ export const helloWorld = inngest.createFunction(
     },
 );
 
+// Generate notes for each chapter with AI
 
 export const CreateNewUser = inngest.createFunction(
     { id: 'create-user' },
@@ -54,25 +55,32 @@ export const GenerateNotes= inngest.createFunction(
     async({event, step}) => {
         const {course} = event.data; // all record info
         const notesResult = await step.run('Generate Chapter Notes', async() => {
-            const Chapters = course?.courseLayour;
+            const Chapters = course?.courseLayout?.chapters;
             let index=0;
             Chapters.forEach(async (chapter) => {
                 const PROMPT ='Generate exam material detail content for each chapter , Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTML , Head, Body, title tag), The chapters : ' + JSON.stringify(chapter);
-                const result=await generateNotesAiModel(PROMPT);
-                const aiResp=result.respons.text();
+                const result=await generateNotesAiModel.sendMessage(PROMPT);
+                const aiResp=result.response.text();
 
-                await db.insert(CHAPTER_NOTE_TABLE).values({
-                    chapterId:index,
+                await db.insert(CHAPTER_NOTES_TABLE).values({
                     courseId:course?.courseId,
-                    note:aiResp
+                    chapterId:index,
+                    notes:aiResp
                 })
                 index++;
             })
             return 'Completed';
         })
 
-        // Generate notes for each chapter with AI
+        // Update status to "ready" in the table (from Generating to ready)
+        const updateCourseStatusResult = await step.run('Update Course Status To Readt', async() =>{
+            const result = await db.update(STUDY_MATERIAL_TABLE).set({
+                status: 'Ready'
+            }).where(eq(STUDY_MATERIAL_TABLE.courseId, course?.courseId))
+            return 'Success';
+        });
 
     }
 
 )
+

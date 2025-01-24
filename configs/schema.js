@@ -18,7 +18,7 @@ export const STUDY_MATERIAL_TABLE=pgTable('studyMaterial', {
     status:varchar().default('Generating'),
 })
 
-export const CHAPTER_NOTE_TABLE= pgTable('chapterNote', {
+export const CHAPTER_NOTES_TABLE= pgTable('chapterNote', {
     id:serial().primaryKey(),
     courseId:varchar().notNull(),
     chapterId:integer().notNull(),
