@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select"
 
 
-function TopicInput({setTopic, setDifficutyLevel}) {
+function TopicInput({setTopic, setDifficultyLevel}) {
     return (
         <div className='mt-10 w-full flex flex-col'>
             <h2>Enter topic or paste the content for which you want to generate study material</h2>
@@ -17,7 +17,7 @@ function TopicInput({setTopic, setDifficutyLevel}) {
             <Textarea placeholder='Start writing here' className='mt-2 w-full' onChange={(event)=>setTopic(event.target.value)} />
             
             <h2 className='mt-5 mb-3'>Select the difficulty level</h2>
-            <Select onValueChange={(value)=>setDifficutyLevel(value)}>
+            <Select onValueChange={(value)=> setDifficultyLevel(value)}>
                 <SelectTrigger className="w-full">
                     <SelectValue placeholder="Difficuly level" />
                 </SelectTrigger>
