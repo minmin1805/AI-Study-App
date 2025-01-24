@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import CourseIntroCard from './_components/CourseIntroCard';
 import StudyMaterialSession from './_components/StudyMaterialSession';
+import ChapterList from './_components/ChapterList';
 
 function Course() {
 const {courseId}=useParams();
@@ -32,6 +33,7 @@ const GetCourse=async()=> {
         <StudyMaterialSession />
 
         {/** Chapter List */}
+        <ChapterList coursr={course} />
 
         {/**  */}
         </div>
