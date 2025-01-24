@@ -3,7 +3,7 @@ import "./globals.css";
 import { Outfit } from "next/font/google"; 
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "@/provider";
-
+import { Toaster } from "@/components/ui/sonner";
 
 
 const geistSans = Geist({
@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
       <Provider>
         {children}
       </Provider>
+      <Toaster />
       </body>
     </html>
     </ClerkProvider>
