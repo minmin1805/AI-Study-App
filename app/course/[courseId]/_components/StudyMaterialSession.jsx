@@ -1,4 +1,5 @@
 import React from 'react'
+import MaterialCardItem from './MaterialCardItem'
 
 function StudyMaterialSession() {
 
@@ -11,25 +12,35 @@ function StudyMaterialSession() {
         },
         {
             name:'Flashcard',
-            desc:'Read notes to prepare it',
-            icon:'/notes.pgn',
-            path:'/notes'
+            desc:'Flashcard help to remember the concepts',
+            icon:'/flashcards.pgn',
+            path:'/flashcards'
         },
         {
-            name:'Notes/Chapters',
-            desc:'Read notes to prepare it',
-            icon:'/notes.pgn',
-            path:'/notes'
+            name:'Quiz',
+            desc:'Great way to test your knowledge',
+            icon:'/quiz.pgn',
+            path:'/quiz'
         },
         {
-            name:'Notes/Chapters',
-            desc:'Read notes to prepare it',
-            icon:'/notes.pgn',
-            path:'/notes'
-        },
+            name:'Question/Answer',
+            desc:'Help to practice your learning',
+            icon:'/qa.pgn',
+            path:'/qa'
+        }
     ]
+
+
   return (
-    <div>StudyMaterialSession</div>
+    <div className='mt-5'>
+    <h2 className='font-medium text-xl' >Study Material</h2>
+
+    <div>
+        {MaterialList.map((item, index) => (
+            <MaterialCardItem item={item} key={index}/>
+        ))}
+    </div>
+    </div>
   )
 }
 
