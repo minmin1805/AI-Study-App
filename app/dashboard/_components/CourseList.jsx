@@ -7,7 +7,7 @@ import CourseCardItem from './CourseCardItem';
 function CourseList() {
 
   const {user} = useUser();
-  const {courseList, setCourseList} = useState([]);
+  const [courseList, setCourseList] = useState([]);
 
   useEffect(() => {
     user&&GetCourseList();
@@ -28,8 +28,8 @@ function CourseList() {
         Your study material
       </h2>
 
-      <div>
-        {courseList.map((course, index) => (
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-5'>
+        {courseList?.map((course, index) => (
           <CourseCardItem course = {course} key = {index}/>
         ))}
       </div>
