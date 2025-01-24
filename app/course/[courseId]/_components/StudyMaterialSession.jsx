@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MaterialCardItem from './MaterialCardItem'
+import axios from 'axios';
 
-function StudyMaterialSession() {
+function StudyMaterialSession({courseId}) {
 
+    const[studyTypeContent, setStudyTypeContent]= useState();
     const MaterialList=[
         {
             name:'Notes/Chapters',
@@ -30,6 +32,19 @@ function StudyMaterialSession() {
         }
     ];
 
+    useEffect(() => {
+        GetStudyMaterial();
+    },[])
+
+    const GetStudyMaterial=async()=> {
+        const result=await axios.post('/api/study-type', {
+            courseId:courseId,
+            studyType:'ALL',
+        })
+        console.log(result?.data);
+        setStudyTypeContent(result.data);
+    }
+
 
   return (
     <div className='mt-5'>
@@ -38,6 +53,7 @@ function StudyMaterialSession() {
     <div className='grid grid-cols-2 md:grid-cols-4 gap-5 mt-3'>
         {MaterialList.map((item, index) => (
             <MaterialCardItem item={item} key={index}/>
+            
         ))}
     </div>
     </div>

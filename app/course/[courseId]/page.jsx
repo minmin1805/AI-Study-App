@@ -30,7 +30,7 @@ const GetCourse=async()=> {
         <CourseIntroCard course={course}/>
 
         {/** study materials options */}
-        <StudyMaterialSession />
+        <StudyMaterialSession courseId={courseId}/>
 
         {/** Chapter List */}
         <ChapterList course={course} />
