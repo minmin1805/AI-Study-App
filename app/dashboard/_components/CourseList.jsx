@@ -10,6 +10,7 @@ function CourseList() {
 
   const {user} = useUser();
   const [courseList, setCourseList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     user&&GetCourseList();
@@ -17,24 +18,32 @@ function CourseList() {
 
 
   const GetCourseList=async()=> {
-
+    setLoading(true);
     const result=await axios.post('/api/courses', 
     {createdBy:user?.primaryEmailAddress?.emailAddress})
     setCourseList(result.data.result);
     console.log(result);
+    setLoading(false);
   }
 
   return (
     <div className='mt-10'>
       <h2 className='font-bold text-2xl flex justify-between'>
         Your study material
-        <Button variant="outline" className='border-primary text-primary'> <RefreshCw/> Refresh </Button>
+        <Button onClick={GetCourseList}
+         variant="outline" className='border-primary text-primary'> <RefreshCw/> Refresh </Button>
       </h2>
 
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-5'>
-        {courseList?.map((course, index) => (
+        {loading==false? courseList?.map((course, index) => (
           <CourseCardItem course = {course} key = {index}/>
-        ))}
+        ))
+        :[1,2,3,4,5,6].map((item,index) => (
+          <div key={index} className='h-56 w-full bg-slate-200 rounded-lg animate-pulse'>
+
+          </div>
+        ))
+        }
       </div>
     </div>
   )
