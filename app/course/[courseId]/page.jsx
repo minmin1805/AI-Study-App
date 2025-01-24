@@ -33,7 +33,7 @@ const GetCourse=async()=> {
         <StudyMaterialSession />
 
         {/** Chapter List */}
-        <ChapterList coursr={course} />
+        <ChapterList course={course} />
 
         {/**  */}
         </div>
