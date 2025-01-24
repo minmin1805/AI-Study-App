@@ -7,35 +7,35 @@ function StudyMaterialSession() {
         {
             name:'Notes/Chapters',
             desc:'Read notes to prepare it',
-            icon:'/notes.pgn',
+            icon:'/notes.png',
             path:'/notes'
         },
         {
             name:'Flashcard',
             desc:'Flashcard help to remember the concepts',
-            icon:'/flashcards.pgn',
+            icon:'/flashcard.png',
             path:'/flashcards'
         },
         {
             name:'Quiz',
             desc:'Great way to test your knowledge',
-            icon:'/quiz.pgn',
+            icon:'/quiz.png',
             path:'/quiz'
         },
         {
             name:'Question/Answer',
             desc:'Help to practice your learning',
-            icon:'/qa.pgn',
+            icon:'/qa.png',
             path:'/qa'
         }
-    ]
+    ];
 
 
   return (
     <div className='mt-5'>
     <h2 className='font-medium text-xl' >Study Material</h2>
 
-    <div>
+    <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
         {MaterialList.map((item, index) => (
             <MaterialCardItem item={item} key={index}/>
         ))}
