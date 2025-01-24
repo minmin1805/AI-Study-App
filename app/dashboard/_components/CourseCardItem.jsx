@@ -5,6 +5,9 @@ import Image from 'next/image'
 import React from 'react'
 
 function CourseCardItem({ course }) {
+
+    const courseSummary = course?.courseLayout?.summary || course?.courseLayout?.course_summary;
+
     return (
         <div className='border rounded-lg shadow-md p-4'>
             <div>
@@ -15,7 +18,7 @@ function CourseCardItem({ course }) {
                     </h2>
                 </div>
                 <h2 className='mt-3 font-medium text-lg'>{course?.courseLayout.course_title}</h2>
-                <p className='text-xs text-gray-500 mt-1 line-clamp-2'>{course?.courseLayout?.summary}</p>
+                <p className='text-xs text-gray-500 mt-1 line-clamp-2'>{courseSummary}</p>
 
                 <div className='mt-3'>
                     <Progress value={50} />
