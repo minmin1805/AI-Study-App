@@ -10,25 +10,31 @@ function StudyMaterialSession({courseId}) {
             name:'Notes/Chapters',
             desc:'Read notes to prepare it',
             icon:'/notes.png',
-            path:'/notes'
+            path:'/notes',
+            type:'notes'
         },
         {
             name:'Flashcard',
             desc:'Flashcard help to remember the concepts',
             icon:'/flashcard.png',
-            path:'/flashcards'
+            path:'/flashcards',
+            type:'flashcard'
         },
         {
             name:'Quiz',
             desc:'Great way to test your knowledge',
             icon:'/quiz.png',
-            path:'/quiz'
+            path:'/quiz',
+            type:'quiz'
         },
         {
             name:'Question/Answer',
             desc:'Help to practice your learning',
             icon:'/qa.png',
-            path:'/qa'
+            path:'/qa',
+            type:'qa'
+
+
         }
     ];
 
@@ -52,8 +58,7 @@ function StudyMaterialSession({courseId}) {
 
     <div className='grid grid-cols-2 md:grid-cols-4 gap-5 mt-3'>
         {MaterialList.map((item, index) => (
-            <MaterialCardItem item={item} key={index}/>
-            
+            <MaterialCardItem item={item} key={index} studyTypeContent={studyTypeContent}/>
         ))}
     </div>
     </div>
