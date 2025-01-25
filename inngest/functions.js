@@ -58,7 +58,7 @@ export const GenerateNotes= inngest.createFunction(
             const Chapters = course?.courseLayout?.chapters;
             let index=0;
             Chapters.forEach(async (chapter) => {
-                const PROMPT='Generate '+course?.courseType+' material detail content for each chapter , Make sure to give notes for each topics from chapters, Code example if applicable in <precode> tag also markHeight the key points and add style for each tags and give the response in HTML format (Do not Add HTML , Head, Body, title tag), The chapter content is :'+ JSON.stringify(chapter)+" ";
+                const PROMPT='Generate '+course?.courseType+' material detail content for each chapter , Make sure to give notes for each topics from chapters. Code example if applicable in <precode> tag also mark Height  isthe key points and add style for each tags and give the response in HTML format (Do not Add HTML , Head, Body, title tag). And please position your note logically and organized of the page and please design it so the note looks beautiful and aesthetic. The chapter content is :'+ JSON.stringify(chapter)+" ";
                 const result=await generateNotesAiModel.sendMessage(PROMPT);
                 const aiResp=result.response.text();
 

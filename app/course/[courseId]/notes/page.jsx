@@ -1,7 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 function ViewNotes() {
@@ -9,6 +9,7 @@ function ViewNotes() {
   const [notes, setNotes]=useState();
   const {courseId}=useParams();
   const [stepCount, setStepCount]=useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     GetNotes();
@@ -37,8 +38,17 @@ function ViewNotes() {
         <Button onClick={()=> setStepCount(stepCount+1)} variant="outline" size="sm" >Next</Button>
 
       </div>
-      <div>
+      <div className='mt-10'>
       <div dangerouslySetInnerHTML={{__html:(notes[stepCount]?.notes)?.replace('```html',' ')}} />
+
+          {notes?.length==stepCount&& 
+          <div className='flex items-center gap-10 flex-col justify-center' >
+            <h2>End of Notes</h2>
+            <Button onClick={router.back}>Go back to course page</Button>
+          </div>
+
+          }
+
       </div>
     </div>
   )
