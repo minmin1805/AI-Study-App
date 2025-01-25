@@ -6,12 +6,19 @@ import React from 'react'
 
 function MaterialCardItem({item, studyTypeContent}) {
 
-  const GenerateContent=()=> {
-    const result=await axios.post('/api/generate-study-type-content', {
-      courseId:,
-      type:item.name
-    })
-  }
+  // console.log(course)
+
+  // const GenerateContent=async()=> {
+
+  //   let chapters='';
+  //   course?.courseLayout.chapters.forEach((chapter)=> {
+  //     chapters=(chapter.chapter_title||chapter.chapterTitle)+','+chapters
+  //   });
+  //   const result=await axios.post('/api/generate-study-type-content', {
+  //     courseId:course?.courseId,
+  //     type:item.name
+  //   })
+  // }
 
   return (
     <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
@@ -28,7 +35,7 @@ function MaterialCardItem({item, studyTypeContent}) {
 
 
       {studyTypeContent?.[item.type]?.length==null?
-      <Button variant="outline" className='mt-3' onClick={()=> GenerateContent()} >Generate</Button>
+      <Button variant="outline" className='mt-3'>Generate</Button>
       :<Button variant="outline" className='mt-3'>View</Button>}
 
     </div>

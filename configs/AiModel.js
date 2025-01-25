@@ -52,23 +52,23 @@ const {
     });
     
 
-    export const GenerateStudyTypeContentAIModel = model.startChat({
-      generationConfig,
-      history: [
-        {
-          role: "user",
-          parts: [
-            {text: "Generate the flashcard on topic: Flutter Fundamentals, User Interface (UI) Development, Basic App Navigation in JSON format with front-back content, Maximum 15 cards"},
-          ],
-        },
-        {
-          role: "model",
-          parts: [
-            {text: "```json\n[\n  {\n    \"front\": \"What is a Widget in Flutter?\",\n    \"back\": \"A Widget is the basic building block of a Flutter app's UI. It describes a part of the user interface and can be a button, text, image, or layout element.\"\n  },\n  {\n    \"front\": \"What is the difference between a StatelessWidget and a StatefulWidget?\",\n    \"back\": \"A StatelessWidget is immutable and cannot change its internal state. A StatefulWidget can change its internal state and rebuild its UI accordingly. StatefulWidgets are used for dynamic elements.\"\n  },\n   {\n    \"front\": \"What is the purpose of the `build()` method in a Widget?\",\n    \"back\": \"The `build()` method in a Widget is responsible for describing the part of the user interface represented by that Widget. It returns a Widget tree.\"\n  },\n  {\n    \"front\": \"What is the role of the `MaterialApp` widget?\",\n     \"back\": \"The `MaterialApp` widget is the root widget for applications using Material Design. It sets up theme, navigation, and other basic configurations for your app.\"\n  },\n  {\n     \"front\": \"What is a `Scaffold` widget used for?\",\n     \"back\": \"The `Scaffold` widget implements the basic Material Design visual layout structure. It provides app bars, drawers, bottom navigation bars, and more.\"\n  },\n  {\n    \"front\": \"How do you create a basic Text widget?\",\n    \"back\": \"Use `Text('Your text here')`. You can customize it using style properties like `style: TextStyle(fontSize: 20)`.\"\n  },\n  {\n     \"front\": \"How do you display an image in Flutter?\",\n    \"back\": \"Use the `Image` widget. For example: `Image.asset('assets/my_image.png')` for local assets or `Image.network('https://example.com/my_image.jpg')` for images from the internet.\"\n  },\n   {\n    \"front\": \"What are the common layout widgets in Flutter?\",\n    \"back\": \"Common layout widgets include `Row`, `Column`, `Container`, `Padding`, `Center`, `Expanded`, and `Stack`.\"\n  },\n  {\n     \"front\": \"What does the `Row` widget do?\",\n    \"back\": \"The `Row` widget arranges its children in a horizontal line.\"\n  },\n  {\n    \"front\": \"What does the `Column` widget do?\",\n     \"back\": \"The `Column` widget arranges its children in a vertical line.\"\n  },\n   {\n    \"front\": \"What is the `Navigator` used for in Flutter?\",\n    \"back\": \"The `Navigator` manages app navigation, allowing you to push new screens onto the navigation stack (like showing new pages) and pop back to previous ones.\"\n  },\n   {\n    \"front\": \"How do you navigate to a new screen?\",\n     \"back\": \"Use `Navigator.push(context, MaterialPageRoute(builder: (context) => NewScreen()))` to navigate to `NewScreen`. \"\n  },\n   {\n    \"front\": \"How do you go back to the previous screen?\",\n    \"back\":\"Use `Navigator.pop(context)` to return to the previous screen.\"\n  },\n  {\n    \"front\": \"What is a 'route' in Flutter?\",\n    \"back\": \"A route is essentially a page or screen within your Flutter app. Each route represents a unique UI that the user can navigate to.\"\n  },\n  {\n    \"front\":\"How do you handle basic user input like button clicks?\",\n     \"back\":\"Use the `onPressed` parameter of widgets like `ElevatedButton` to define an action to perform when the button is clicked.\"\n  }\n\n]\n```"},
-          ],
-        },
-      ],
-    });
+    // export const GenerateStudyTypeContentAIModel = model.startChat({
+    //   generationConfig,
+    //   history: [
+    //     {
+    //       role: "user",
+    //       parts: [
+    //         {text: "Generate the flashcard on topic: Flutter Fundamentals, User Interface (UI) Development, Basic App Navigation in JSON format with front-back content, Maximum 15 cards"},
+    //       ],
+    //     },
+    //     {
+    //       role: "model",
+    //       parts: [
+    //         {text: "```json\n[\n  {\n    \"front\": \"What is a Widget in Flutter?\",\n    \"back\": \"A Widget is the basic building block of a Flutter app's UI. It describes a part of the user interface and can be a button, text, image, or layout element.\"\n  },\n  {\n    \"front\": \"What is the difference between a StatelessWidget and a StatefulWidget?\",\n    \"back\": \"A StatelessWidget is immutable and cannot change its internal state. A StatefulWidget can change its internal state and rebuild its UI accordingly. StatefulWidgets are used for dynamic elements.\"\n  },\n   {\n    \"front\": \"What is the purpose of the `build()` method in a Widget?\",\n    \"back\": \"The `build()` method in a Widget is responsible for describing the part of the user interface represented by that Widget. It returns a Widget tree.\"\n  },\n  {\n    \"front\": \"What is the role of the `MaterialApp` widget?\",\n     \"back\": \"The `MaterialApp` widget is the root widget for applications using Material Design. It sets up theme, navigation, and other basic configurations for your app.\"\n  },\n  {\n     \"front\": \"What is a `Scaffold` widget used for?\",\n     \"back\": \"The `Scaffold` widget implements the basic Material Design visual layout structure. It provides app bars, drawers, bottom navigation bars, and more.\"\n  },\n  {\n    \"front\": \"How do you create a basic Text widget?\",\n    \"back\": \"Use `Text('Your text here')`. You can customize it using style properties like `style: TextStyle(fontSize: 20)`.\"\n  },\n  {\n     \"front\": \"How do you display an image in Flutter?\",\n    \"back\": \"Use the `Image` widget. For example: `Image.asset('assets/my_image.png')` for local assets or `Image.network('https://example.com/my_image.jpg')` for images from the internet.\"\n  },\n   {\n    \"front\": \"What are the common layout widgets in Flutter?\",\n    \"back\": \"Common layout widgets include `Row`, `Column`, `Container`, `Padding`, `Center`, `Expanded`, and `Stack`.\"\n  },\n  {\n     \"front\": \"What does the `Row` widget do?\",\n    \"back\": \"The `Row` widget arranges its children in a horizontal line.\"\n  },\n  {\n    \"front\": \"What does the `Column` widget do?\",\n     \"back\": \"The `Column` widget arranges its children in a vertical line.\"\n  },\n   {\n    \"front\": \"What is the `Navigator` used for in Flutter?\",\n    \"back\": \"The `Navigator` manages app navigation, allowing you to push new screens onto the navigation stack (like showing new pages) and pop back to previous ones.\"\n  },\n   {\n    \"front\": \"How do you navigate to a new screen?\",\n     \"back\": \"Use `Navigator.push(context, MaterialPageRoute(builder: (context) => NewScreen()))` to navigate to `NewScreen`. \"\n  },\n   {\n    \"front\": \"How do you go back to the previous screen?\",\n    \"back\":\"Use `Navigator.pop(context)` to return to the previous screen.\"\n  },\n  {\n    \"front\": \"What is a 'route' in Flutter?\",\n    \"back\": \"A route is essentially a page or screen within your Flutter app. Each route represents a unique UI that the user can navigate to.\"\n  },\n  {\n    \"front\":\"How do you handle basic user input like button clicks?\",\n     \"back\":\"Use the `onPressed` parameter of widgets like `ElevatedButton` to define an action to perform when the button is clicked.\"\n  }\n\n]\n```"},
+    //       ],
+    //     },
+    //   ],
+    // });
 
     // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
     // console.log(result.response.text());
