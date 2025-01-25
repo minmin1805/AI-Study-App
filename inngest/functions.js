@@ -1,8 +1,8 @@
 import { db } from "@/configs/db";
 import { inngest } from "./client";
-import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, USER_TABLE } from "@/configs/schema";
+import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, STUDY_TYPE_CONTENT_TABLE, USER_TABLE } from "@/configs/schema";
 import { eq } from "drizzle-orm";
-import { generateNotesAiModel } from "@/configs/AiModel";
+import { GenerateStudyTypeContentAIModel, generateNotesAiModel } from "@/configs/AiModel";
 
 export const helloWorld = inngest.createFunction(
     { id: "hello-world" },
@@ -90,6 +90,23 @@ export const GenerateStudyTypeContent=inngest.createFunction(
     {event:'studyType.content'},
 
     async({event,step})=>{
-        
+        const {studyType,prompt,courseId}=event.data;
+
+        const FlashcardAIRedult=await step.run('Generating Flashcard using AI', async()=> {
+            const result=await GenerateStudyTypeContentAIModel.sendMessage(prompt);
+            const AIResult = JSON.parse(result.response.text());
+            return AIResult;
+        })
+
+        // Save the AIResult
+        const DbResult = await step.run('Save Result to Database', async()=> {
+            const result=await db.insert(STUDY_TYPE_CONTENT_TABLE)
+            .vallues({
+                courseId:courseId,
+                type:courseType,
+                content:FlashcardAIRedult
+            })
+            return 'Data Insert Into STUDY_TYPE_CONTENT_TABLE'
+        })
     }
 )
