@@ -30,30 +30,33 @@ function MaterialCardItem({item, studyTypeContent,course,refreshData}) {
     toast('Your contetnt is ready to view ')
   }
 
+  // console.log("Current Study Type Content:", studyTypeContent); // Log the current state
+
+
+  // Determine if the current item is ready
+  const isReady = studyTypeContent?.[item.type]?.status === "Ready" || studyTypeContent?.[item.type]?.length > 0;
+
   return (
-    <Link href={'/course/'+course?.courseId+item.path} >
-    <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
-    ${studyTypeContent?.[item.type]?.length==null&&'grayscale'}`
-    }>
-    
-    {studyTypeContent?.[item.type]?.length==null?
-    <h2 className='p-1 px-2 bg-gray-500 text-white rounded-full text-[10px] mb-2'>Generate</h2>
-    :<h2 className='p-1 px-2 bg-green-500 text-white rounded-full text-[10px] mb-2'>Ready</h2>}
-  
-      <Image src={item.icon} alt={item.name} width={50} height={50} />
-      <h2 className='font-medium mt-3'>{item.name}</h2>
-      <p className='text-gray-500 text-sm text-center'>{item.desc}</p>
+    <Link href={'/course/' + course?.courseId + item.path} >
+      <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center ${!isReady && 'grayscale'}`}>
+        {isReady ?
+          <h2 className='p-1 px-2 bg-green-500 text-white rounded-full text-[10px] mb-2'>Ready</h2> :
+          <h2 className='p-1 px-2 bg-gray-500 text-white rounded-full text-[10px] mb-2'>Generate</h2>
+        }
+        <Image src={item.icon} alt={item.name} width={50} height={50} />
+        <h2 className='font-medium mt-3'>{item.name}</h2>
+        <p className='text-gray-500 text-sm text-center'>{item.desc}</p>
 
-
-      {studyTypeContent?.[item.type]?.length==null?
-      <Button variant="outline" className='mt-3'onClick={()=>GenerateContent()}>
-      {loading&& <RefreshCcw className='animate-spin'/>}
-      Generate</Button>
-      :<Button variant="outline" className='mt-3'>View</Button>}
-
-    </div> 
+        {isReady ?
+          <Button variant="outline" className='mt-3'>View</Button> :
+          <Button variant="outline" className='mt-3' onClick={() => GenerateContent()}>
+            {loading && <RefreshCcw className='animate-spin' />}
+            Generate
+          </Button>
+        }
+      </div> 
     </Link>
   )
 }
 
-export default MaterialCardItem
+export default MaterialCardItem;

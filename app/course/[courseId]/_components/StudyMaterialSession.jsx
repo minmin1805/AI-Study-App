@@ -48,7 +48,6 @@ function StudyMaterialSession({courseId,course}) {
             courseId:courseId,
             studyType:'ALL',
         })
-        console.log(result?.data);
         setStudyTypeContent(result.data);
     }
 
