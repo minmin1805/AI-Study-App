@@ -2,14 +2,17 @@ import { Button } from '@/components/ui/button'
 import axios from 'axios'
 import { RefreshCcw } from 'lucide-react';
 import Image from 'next/image'
+import Link from 'next/link';
 import React, { useState } from 'react'
+import { toast } from 'sonner';
 
-function MaterialCardItem({item, studyTypeContent,course}) {
+function MaterialCardItem({item, studyTypeContent,course,refreshData}) {
 
   const[loading,setLoading] = useState(false);
 
   const GenerateContent=async()=>{
 
+    toast('Generating your content')
     setLoading(true)
     let chapters='';
     course?.courseLayout.chapters.forEach((chapter)=> {
@@ -23,9 +26,12 @@ function MaterialCardItem({item, studyTypeContent,course}) {
     });
     setLoading(false)
     console.log(result);
+    refreshData(true)
+    toast('Your contetnt is ready to view ')
   }
 
   return (
+    <Link href={'/course/'+course?.courseId+item.path} >
     <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
     ${studyTypeContent?.[item.type]?.length==null&&'grayscale'}`
     }>
@@ -45,7 +51,8 @@ function MaterialCardItem({item, studyTypeContent,course}) {
       Generate</Button>
       :<Button variant="outline" className='mt-3'>View</Button>}
 
-    </div>
+    </div> 
+    </Link>
   )
 }
 

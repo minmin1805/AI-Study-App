@@ -102,7 +102,8 @@ export const GenerateStudyTypeContent=inngest.createFunction(
         const DbResult = await step.run('Save Result to Database', async()=> {
             const result=await db.update(STUDY_TYPE_CONTENT_TABLE)
             .set({
-                content:FlashcardAIResult
+                content:FlashcardAIResult,
+                status:'Ready'
             }).where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId))
 
             return 'Data Insert Into STUDY_TYPE_CONTENT_TABLE'
