@@ -1,8 +1,16 @@
 import { Button } from '@/components/ui/button'
+import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 
 function MaterialCardItem({item, studyTypeContent}) {
+
+  const GenerateContent=async()=>{
+    const result=await axios.post('/api/study-type-content', {
+      type:item.name
+    })
+  }
+
   return (
     <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
     ${studyTypeContent?.[item.type]?.length==null&&'grayscale'}`
@@ -18,7 +26,7 @@ function MaterialCardItem({item, studyTypeContent}) {
 
 
       {studyTypeContent?.[item.type]?.length==null?
-      <Button variant="outline" className='mt-3'>Generate</Button>
+      <Button variant="outline" className='mt-3'onClick={()=>GenerateConent()} >Generate</Button>
       :<Button variant="outline" className='mt-3'>View</Button>}
 
     </div>
