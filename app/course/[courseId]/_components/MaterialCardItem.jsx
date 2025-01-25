@@ -3,12 +3,19 @@ import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 
-function MaterialCardItem({item, studyTypeContent}) {
+function MaterialCardItem({item, studyTypeContent,course}) {
+
 
   const GenerateContent=async()=>{
-    const result=await axios.post('/api/study-type-content', {
-      type:item.name
+    console.log(course)
+    let chapters='';
+    course?.courseLayout.chapters.forEach((chapter)=> {
+
     })
+
+  //   const result=await axios.post('/api/study-type-content', {
+  //     type:item.name
+  //   })
   }
 
   return (
@@ -26,7 +33,7 @@ function MaterialCardItem({item, studyTypeContent}) {
 
 
       {studyTypeContent?.[item.type]?.length==null?
-      <Button variant="outline" className='mt-3'onClick={()=>GenerateConent()} >Generate</Button>
+      <Button variant="outline" className='mt-3'onClick={()=>GenerateContent()} >Generate</Button>
       :<Button variant="outline" className='mt-3'>View</Button>}
 
     </div>
