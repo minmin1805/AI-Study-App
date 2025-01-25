@@ -4,7 +4,7 @@ import { inngest } from "@/inngest/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-    const {chapters,courseId}=await req.json();
+    const {chapters,courseId,type}=await req.json();
 
     const PROMPT='Generate the flashcard on topic: '+chapters+'  in JSON format with front back content, Maximum 15 cards';
 
@@ -20,10 +20,10 @@ export async function POST(req) {
         data:{
             studyType:type,
             prompt:PROMPT,
-            courseId:CourseCardItem,
+            courseId:courseId,
             recordId:result[0].id
         }
     })
 
-    return NextResponse.json(result[0].id)
+    return NextResponse.json(result[0].id);
 }

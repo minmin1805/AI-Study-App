@@ -92,7 +92,7 @@ export const GenerateStudyTypeContent=inngest.createFunction(
     async({event,step})=>{
         const {studyType,prompt,courseId,recordId}=event.data;
 
-        const FlashcardAIRedult=await step.run('Generating Flashcard using AI', async()=> {
+        const FlashcardAIResult=await step.run('Generating Flashcard using AI', async()=> {
             const result=await GenerateStudyTypeContentAIModel.sendMessage(prompt);
             const AIResult = JSON.parse(result.response.text());
             return AIResult;
@@ -102,7 +102,7 @@ export const GenerateStudyTypeContent=inngest.createFunction(
         const DbResult = await step.run('Save Result to Database', async()=> {
             const result=await db.update(STUDY_TYPE_CONTENT_TABLE)
             .set({
-                content:FlashcardAIRedult
+                content:FlashcardAIResult
             }).where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId))
 
             return 'Data Insert Into STUDY_TYPE_CONTENT_TABLE'
