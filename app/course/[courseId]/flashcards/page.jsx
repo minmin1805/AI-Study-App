@@ -17,10 +17,21 @@ function Flashcards() {
     const { courseId } = useParams();
     const [flashCards, setFlashCards] = useState([]);
     const [isFlipped, setIsFlipped] = useState();
+    const [api, setApi]=useState();
+
 
     useEffect(() => {
         GetFlashCards();
     }, [])
+
+    useEffect(()=> {
+        if(!api) {
+            return ;
+        }
+        api.on('select',()=>{
+            setIsFlipped(false);
+        })
+    },[api])
 
     const GetFlashCards = async () => {
         const result = await axios.post('/api/study-type', {
@@ -38,18 +49,19 @@ function Flashcards() {
     }
 
     return (
-        <div>
-            <h2 className='font-bold text-2xl'>Flashcards</h2>
-            <p>Flashcards: The Ultimate Tool to Lock in Concepts!</p>
+        <div >
+            <h2 className='font-bold text-2xl flex items-center justify-center'>Flashcards</h2>
+            <p className='text-xl flex items-center justify-center'>Flashcards: The Ultimate Tool to Lock in Concepts!</p>
 
-            <div className='flex items-center justify-center mt-10'>
-                <Carousel>
-                    <CarouselContent>
-                    (flashCard)
-                        <CarouselItem>
-                            <Flashcarditem handleClick={handleClick} isFlipped={isFlipped} />
+            <div className=''>
+                <Carousel setApi={setApi}>
+                    <CarouselContent >
+                        {flashCards?.content&&flashCards.content?.map((flashcard, index)=> (
+                            <CarouselItem key={index} className='mt-10'>
+                                <Flashcarditem handleClick={handleClick} isFlipped={isFlipped} flashcard={flashcard}/>
 
-                        </CarouselItem>
+                            </CarouselItem>
+                        ))}
 
                     </CarouselContent>
                     <CarouselPrevious />
