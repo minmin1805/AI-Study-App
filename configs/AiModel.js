@@ -70,5 +70,23 @@ const {
       ],
     });
 
+    export const GenerateQuizAiModel = model.startChat({
+      generationConfig,
+      history: [
+        {
+          role: "user",
+          parts: [
+            {text: "Generate Quiz on topic : <Chapters> with Question and Options along with correct answer in JSON format, (Max 10)\n"},
+          ],
+        },
+        {
+          role: "model",
+          parts: [
+            {text: "```json\n{\n  \"quizTitle\": \"Chapters Quiz\",\n  \"questions\": [\n    {\n      \"question\": \"What is a chapter typically used for in a book?\",\n      \"options\": [\n        \"To make the book longer\",\n        \"To confuse the reader\",\n        \"To organize the content into logical sections\",\n        \"To provide random breaks\"\n      ],\n      \"correctAnswer\": \"To organize the content into logical sections\"\n    },\n    {\n      \"question\": \"Which of the following is a common way to distinguish chapters in a book?\",\n      \"options\": [\n        \"Different font sizes within the chapter\",\n        \"Numbering or titles\",\n          \"Repeating the previous paragraph\",\n         \"Using random symbols\"\n      ],\n       \"correctAnswer\": \"Numbering or titles\"\n    },\n    {\n        \"question\": \"A chapter ending usually indicates what?\",\n        \"options\": [\n            \"The middle of the story\",\n            \"A shift in time or focus, or the end of a specific part\",\n           \"The same part going on and on\",\n            \"A new character is introduced\"\n        ],\n        \"correctAnswer\": \"A shift in time or focus, or the end of a specific part\"\n    },\n    {\n      \"question\": \"What might a reader do at the end of a chapter?\",\n       \"options\": [\n        \"Immediately start the next one without thinking\",\n        \"Reflect on the events and prepare for the next part\",\n         \"Rewind to the beginning of the book\",\n        \"Close the book and stop reading\"\n       ],\n       \"correctAnswer\": \"Reflect on the events and prepare for the next part\"\n    },\n     {\n      \"question\": \"In what kind of books are chapters primarily found?\",\n       \"options\":[\n         \"Cookbooks\",\n         \"Novels, textbooks, and biographies\",\n          \"Dictionaries\",\n          \"Magazines\"\n      ],\n      \"correctAnswer\": \"Novels, textbooks, and biographies\"\n    },\n    {\n      \"question\": \"What can chapters sometimes include within them?\",\n      \"options\":[\n          \"Index\",\n         \"Subheadings, illustrations or graphs\",\n          \"Glossary\",\n          \"Table of Contents\"\n       ],\n      \"correctAnswer\": \"Subheadings, illustrations or graphs\"\n    },\n     {\n      \"question\": \"How do chapters help in terms of reading pace?\",\n      \"options\": [\n        \"They make you read really fast\",\n          \"They provide natural stopping points for readers\",\n         \"They make the reading long and tedious\",\n        \"They are random and not needed\"\n       ],\n        \"correctAnswer\": \"They provide natural stopping points for readers\"\n    },\n    {\n        \"question\": \"When might a book have shorter chapters?\",\n        \"options\": [\n            \"For academic books\",\n            \"In books for very young children or fast-paced novels\",\n           \"Only in very long books\",\n            \"In books written only by expert authors\"\n       ],\n         \"correctAnswer\": \"In books for very young children or fast-paced novels\"\n    },\n     {\n       \"question\": \"What is the main purpose of having chapters in a non-fiction book?\",\n       \"options\": [\n         \"To confuse the reader\",\n         \"To make the book longer\",\n         \"To group information into specific topics or arguments\",\n         \"To add filler\"\n       ],\n        \"correctAnswer\":\"To group information into specific topics or arguments\"\n     },\n    {\n        \"question\":\"What might a change in chapter indicate in a fictional book?\",\n        \"options\":[\n            \"A chapter can not indicate a change of anything\",\n            \"A shift in protagonist's thoughts\",\n            \"Change in setting, perspective, or time\",\n            \"No change of anything\"\n         ],\n        \"correctAnswer\": \"Change in setting, perspective, or time\"\n     }\n  ]\n}\n```\n"},
+          ],
+        },
+      ],
+    });
+
     // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
     // console.log(result.response.text());
