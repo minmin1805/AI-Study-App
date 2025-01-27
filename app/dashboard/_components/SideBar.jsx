@@ -1,11 +1,12 @@
 "use client"
+import { CourseCountContext } from '@/app/_context/CourseCountContext'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { LayoutDashboard, Shield, UserCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useContext } from 'react'
 
 function SideBar() {
 
@@ -28,6 +29,8 @@ function SideBar() {
             path: '/dashboard/profile'
         }
     ]
+
+    const {totalCourse, setTotalCourse}=useContext(CourseCountContext);
 
   return (
     <div className='h-screen shadow-md p-5'>
@@ -52,9 +55,9 @@ function SideBar() {
         </div>
 
         <div className='border p-3 bg-slate-100 rounded-lg absolute bottom-10 w-[87%] left-4'>
-            <h2 className='text-lg mb-2'>Available Credits: 5</h2>
-            <Progress value={30} />
-            <h2 className='text-sm'>1 Out of 5 Credits Used</h2>
+            <h2 className='text-lg mb-2'>Available Credits: {(5-totalCourse)}</h2>
+            <Progress value={(totalCourse/5)*100} />
+            <h2 className='text-sm'>{totalCourse} Out of 5 Credits Used</h2>
             <Link href={'/dashboard/upgrade'} className='text-primary text-xm mt-3'>Upgrade to create more</Link>
         </div>
     </div>

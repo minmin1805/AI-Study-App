@@ -28,7 +28,7 @@ function CourseCardItem({ course }) {
                 <div className='mt-3 flex justify-end'>
                    {course?.status=='Generating' ?
                    <h2 className='text-sm p-1 px-2 rounded-full bg-gray-200 flex gap-2 items-center'>
-                   <RefreshCw className='h-4 w-4'/>
+                   <RefreshCw className='h-4 w-4 animate-spin'/>
                    Generating...</h2>
                    :
                    <Link href={'/course/' + course?.courseId}>
