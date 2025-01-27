@@ -6,7 +6,12 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     const {chapters,courseId,type}=await req.json();
 
-    const PROMPT='Generate the flashcard on topic: '+chapters+'  in JSON format with front back content. Please you "must" make it in a way that the value is JSON serializable when trying to do NextResponse.json on it. Maximum 15 cards only';
+    const PROMPT = type === 'Flashcard'
+    ? `Generate the flashcard on topic: ${chapters} in JSON format with front and back content. Please ensure that the value is JSON serializable when trying to do NextResponse.json on it. Maximum 15 cards only.`
+    : type === 'Quiz'
+        ? `Generate Quiz on topic: ${chapters} with Questions and Options along with the correct answer in JSON format, (Max 10).`
+        : '';  // This empty string is a fallback in case the type is neither 'Flashcard' nor 'Quiz'
+
     // insert record to db, update status to generating
     const result=await db.insert(STUDY_TYPE_CONTENT_TABLE).values({
         courseId:courseId,

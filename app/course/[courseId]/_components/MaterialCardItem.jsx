@@ -27,7 +27,7 @@ function MaterialCardItem({item, studyTypeContent,course,refreshData}) {
     setLoading(false)
     console.log(result);
     refreshData(true)
-    toast('Your contetnt is ready to view ')
+    toast('Your content is ready to view ')
   }
 
   // console.log("Current Study Type Content:", studyTypeContent); // Log the current state
