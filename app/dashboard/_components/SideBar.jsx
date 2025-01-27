@@ -52,13 +52,14 @@ function SideBar() {
 
                 <div className='mt-5'>
                     {MenuList.map((menu, index) => (
-                        <div key={index} className={`flex gap-5 items-center p-3 hover:bg-slate-200 rounded-lg cursor-pointer mt-3
+                        <Link href={menu.path} key={index}>
+                        <div  className={`flex gap-5 items-center p-3 hover:bg-slate-200 rounded-lg cursor-pointer mt-3
                     ${path == menu.path && 'bg-slate-200'} `}>
                             <menu.icon 
                             onClick={() => handleNavigation(menu.path)}
                             />
                             <h2>{menu.name}</h2>
-                        </div>
+                        </div></Link>
                     ))}
                 </div>
             </div>

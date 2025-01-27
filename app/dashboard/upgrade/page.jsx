@@ -208,7 +208,8 @@ function Upgrade() {
       </li>
     </ul>
 
-   {userDetail?.isMember==false? <Button
+   {userDetail?.isMember==false? 
+   <Button
       onClick={OnCheckoutClick}
       className="w-full mt-5"
     >
