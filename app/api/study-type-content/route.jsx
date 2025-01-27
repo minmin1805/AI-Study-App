@@ -9,7 +9,7 @@ export async function POST(req) {
     const PROMPT = type === 'Flashcard'
     ? `Generate the flashcard on topic: ${chapters} in JSON format with front and back content. Please ensure that the value is JSON serializable when trying to do NextResponse.json on it. Maximum 15 cards only.`
     : type === 'Quiz'
-        ? `Generate Quiz on topic: ${chapters} with Questions and Options along with the correct answer in JSON format, (Max 10).`
+        ? `Generate Quiz on topic: ${chapters} with Questions and Options along with the correct answer in JSON format. And the value must be JSON serializable when trying to do NextResponse.json(result[0]) on it. (Max 10 quizzes).`
         : '';  // This empty string is a fallback in case the type is neither 'Flashcard' nor 'Quiz'
 
     // insert record to db, update status to generating
