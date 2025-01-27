@@ -19,8 +19,8 @@ export async function POST(req) {
         const result= {
             notes:notes,
             flashcard:contentList?.find(item=>item.type=='Flashcard'),
-            quiz:null,
-            qa:null
+            quiz:contentList?.find(item=>item.type=='Quiz'),
+            qa:contentList?.find(item=>item.type=='QA')
         }
         return NextResponse.json(result);
     }
