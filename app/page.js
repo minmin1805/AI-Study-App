@@ -1,15 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 
 export default function Home() {
-  return (
+  const { userId } = auth();
 
-    <div>
-      <h1>Home Page</h1>
-      <Button>Subsribe</Button>
+  if (!userId) {
+    redirect("/sign-in"); // 👈 Redirect to sign-in if not logged in
+  }
 
-      <UserButton />
-    </div>
-  );
+  redirect("/dashboard"); // 👈 Otherwise go to dashboard
 }
