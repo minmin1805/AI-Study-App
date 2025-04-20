@@ -1,12 +1,12 @@
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
 
-export default function Home() {
-  const { userId } = auth();
+export default async function Home() {
+  const { userId, redirectToSignIn } = await auth();
 
   if (!userId) {
-    redirect("/sign-in"); // 👈 Redirect to sign-in if not logged in
+    return redirectToSignIn(); // Proper Clerk method
   }
 
-  redirect("/dashboard"); // 👈 Otherwise go to dashboard
+  redirect("/dashboard"); // Otherwise, go to dashboard
 }
