@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useContext } from 'react'
+import webLogo from "../../../public/synapse_hub_logo.svg"
 // import { useNavigate } from 'react-router'
 
 function SideBar() {
@@ -40,15 +41,15 @@ function SideBar() {
     const { totalCourse, setTotalCourse } = useContext(CourseCountContext);
 
     return (
-        <div className='h-screen shadow-md p-5'>
+        <div className='h-screen shadow-md p-4'>
             <div className='flex gap-2 items-center'>
-                <Image src={'/logo.svg'} alt='logo' width={40} height={40} />
-                <h2 className='font-bold text-2xl'>Pro Study</h2>
+                <Image src={webLogo} alt='logo' width={60} height={60} />
+                <h2 className='font-bold text-2xl'>Synapse Hub</h2>
             </div>
 
             <div className='mt-10'>
                 <Link href={'/create'} className='w-full'>
-                    <Button className='w-full'>+ Create New</Button></Link>
+                    <button className='w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition-all duration-300'>+ Create New</button></Link>
 
                 <div className='mt-5'>
                     {MenuList.map((menu, index) => (

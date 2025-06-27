@@ -6,8 +6,6 @@ function DashboardHeader() {
   return (
     <div>
       <div className='flex gap-2 items-center '>
-        <Image src={'/logo.svg'} alt='logo' width={40} height={40} />
-        <h2 className='font-bold text-2xl'>Pro Study</h2>
       </div>
 
       <div className='p-5 shadow-md flex justify-end'>
