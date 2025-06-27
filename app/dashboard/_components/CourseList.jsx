@@ -34,7 +34,7 @@ function CourseList() {
       <h2 className='font-bold text-2xl flex justify-between'>
         Your study material
         <Button onClick={GetCourseList}
-         variant="outline" className='border-primary text-primary'> <RefreshCw/> Refresh </Button>
+         variant="outline" className='border-green-500 text-green-500'> <RefreshCw/> Refresh </Button>
       </h2>
 
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-5'>

@@ -69,7 +69,7 @@ function SideBar() {
                 <h2 className='text-lg mb-2'>Available Credits: {(5 - totalCourse)}</h2>
                 <Progress value={(totalCourse / 5) * 100} />
                 <h2 className='text-sm'>{totalCourse} Out of 5 Credits Used</h2>
-                <Link href={'/dashboard/upgrade'} className='text-primary text-xm mt-3'>Upgrade to create more</Link>
+                <Link href={'/dashboard/upgrade'} className=' text-green-500 text-xm mt-3'>Upgrade to create more</Link>
             </div>
         </div>
     )

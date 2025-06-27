@@ -13,7 +13,7 @@ function CourseCardItem({ course }) {
         <div className='border rounded-lg shadow-md p-4'>
             <div>
                 <div className='flex justify-between items-center'>
-                    <Image src={'/knowledge.png'} alt='Course' width={50} height={50} />
+                    <Image src={'/books.png'} alt='Course' width={50} height={50} />
                     <h2 className='text-[10px] bg-gray-200 p-1 px-2 rounded-full'>
                         20 Dec 2024
                     </h2>
@@ -32,7 +32,7 @@ function CourseCardItem({ course }) {
                    Generating...</h2>
                    :
                    <Link href={'/course/' + course?.courseId}>
-                   <Button>View</Button>
+                   <button className='bg-green-500 text-white py-2 px-5 rounded-lg hover:bg-green-600 transition-all duration-300'>View</button>
                    </Link>}
                 </div>
 
