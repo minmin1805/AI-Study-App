@@ -5,7 +5,6 @@ import React from 'react'
 function CourseIntroCard({course}) {
   return (
     <div className='flex gap-5 items-center p-10 border shadow-md rounded-lg'>
-      <Image src={'/books.png'} alt='other' width={60} height={60} />
 
       <div>
         <h2 className='font-bold text-2xl'>{course?.courseLayout?.course_title}</h2>

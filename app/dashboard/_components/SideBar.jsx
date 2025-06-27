@@ -2,7 +2,11 @@
 import { CourseCountContext } from '@/app/_context/CourseCountContext'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { LayoutDashboard, Shield, UserCircle } from 'lucide-react'
+import { MdDashboard } from "react-icons/md"
+import { FaUserAlt } from "react-icons/fa";
+;
+
+import { GiUpgrade } from "react-icons/gi";
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -23,17 +27,17 @@ function SideBar() {
     const MenuList = [
         {
             name: 'Dashboard',
-            icon: LayoutDashboard,
+            icon: MdDashboard,
             path: '/dashboard'
         },
         {
             name: 'Upgrade',
-            icon: Shield,
+            icon: GiUpgrade,
             path: '/dashboard/upgrade'
         },
         {
             name: 'Profile',
-            icon: UserCircle,
+            icon: FaUserAlt,
             path: '/dashboard/profile'
         }
     ]
@@ -56,7 +60,7 @@ function SideBar() {
                         <Link href={menu.path} key={index}>
                         <div  className={`flex gap-5 items-center p-3 hover:bg-slate-200 rounded-lg cursor-pointer mt-3
                     ${path == menu.path && 'bg-slate-200'} `}>
-                            <menu.icon 
+                            <menu.icon size={25}
                             onClick={() => handleNavigation(menu.path)}
                             />
                             <h2>{menu.name}</h2>

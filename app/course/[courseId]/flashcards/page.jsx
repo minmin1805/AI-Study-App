@@ -52,18 +52,16 @@ function Flashcards() {
 
     return (
         <div >
-            <h2 className='font-bold text-2xl flex items-center justify-center'>Flashcards</h2>
-            <p className='text-xl flex items-center justify-center'>Flashcards: The Ultimate Tool to Lock in Concepts!</p>
+            <h2 className='font-bold text-2xl flex items-center justify-center mt-5'>Flashcards</h2>
+            <p className='text-xl flex items-center justify-center mt-2'>Flashcards: Your Secret Weapon for Concept Mastery</p>
 
-            <div className=''>
+            <div className='mt-10 px-30 py-20 border shadow-md rounded-lg max-w-[90%] mx-auto mb-10 bg-gray-100'>
 
-                <StepProgress data={flashCards?.content}
-                    setStepCount={(v) => setStepCount(v)}
-                    stepCount={stepCount} />
+
                 <Carousel setApi={setApi}>
                     <CarouselContent >
                         {flashCards?.content && flashCards.content?.map((flashcard, index) => (
-                            <CarouselItem key={index} className='mt-10'>
+                            <CarouselItem key={index} className='mt-10 mb-20'>
                                 <Flashcarditem handleClick={handleClick} isFlipped={isFlipped} flashcard={flashcard} />
 
                             </CarouselItem>

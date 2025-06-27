@@ -26,7 +26,7 @@ function ViewNotes() {
 
   return notes&& (
     <div>
-      <div className='flex gap-5 items-center'>
+      <div className='flex gap-5 items-center h-full w-full'>
       {stepCount!=0&&
       <Button onClick={()=> setStepCount(stepCount-1)} variant="outline" size="sm" >Previous</Button>}
         {notes?.map((item, index) => (
@@ -38,7 +38,7 @@ function ViewNotes() {
         <Button onClick={()=> setStepCount(stepCount+1)} variant="outline" size="sm" >Next</Button>
 
       </div>
-      <div className='mt-10'>
+      <div className='mt-10 p-5 border shadow-md rounded-lg max-w-[90%] mx-auto  mb-10 '>
       <div dangerouslySetInnerHTML={{__html:(notes[stepCount]?.notes)?.replace('```html',' ')}} />
 
           {notes?.length==stepCount&& 

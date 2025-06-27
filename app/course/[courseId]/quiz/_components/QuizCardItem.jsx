@@ -5,8 +5,8 @@ function QuizCardItem({quiz, userSelectedOption}) {
     const [selectedOption, setSelectedOption] = useState();
 
   return (
-    <div className='mt-10 p-5'>
-        <h2 className='font-medium text-3xl text-center'>
+    <div className=' p-5'>
+        <h2 className='font-bold text-3xl text-center'>
             {quiz?.question}
         </h2>
 
@@ -18,7 +18,7 @@ function QuizCardItem({quiz, userSelectedOption}) {
                     }} 
                     key={index} 
                     variant='outline' 
-                    className={`w-full border rounded-full p-3 px-4 text-center text-lg hover:bg-gray-200 cursor-pointer
+                    className={`flex items-center justify-center w-full border rounded-full p-3 px-4 text-center text-lg hover:bg-gray-200 cursor-pointer
                     ${selectedOption==option&&'bg-primary text-white hover:bg-primary'}`} >
                     {option}</h2>
                 ))}

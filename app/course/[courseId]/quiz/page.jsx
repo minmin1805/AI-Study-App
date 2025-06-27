@@ -46,14 +46,15 @@ function Quiz() {
     }, [stepCount])
 
     return (
-        <div className='font-bold text-2xl text-center mb-4 mt-5'>
+        <div className='text-center mb-4 mt-5'>
 
-            <h2>Quiz</h2>
+            <h2 className='font-bold text-3xl'>Quiz</h2>
+            <p className='text-lg text-gray-800 mb-10'>Test your knowledge with our interactive quizzes!</p>
 
             <StepProgress data={quiz} setStepCount={(v) => setStepCount(v)}
                 stepCount={stepCount} />
 
-            <div>
+            <div className='mt-20 p-5 border shadow-md rounded-lg max-w-[90%] mx-auto mb-10 bg-gray-100'>
                 {/* {quiz&&quiz.map((item, index) => ( */}
                 <QuizCardItem quiz={quiz[stepCount]} userSelectedOption={(v) => checkAnswer(v, quiz[stepCount])} />
                 {/* ))} */}
@@ -61,7 +62,7 @@ function Quiz() {
 
             {isCorrectAnswer == false && <div>
 
-                <div className='border p-3 border-red-700 bg-red-200 rounded-lg'>
+                <div className='border p-3 border-red-700 bg-red-200 rounded-lg max-w-[90%] mx-auto'>
                     <h2 className='font-bold text-lg text-red-600'>Correct</h2>
                     <p>Wrong!! The Correct Answer is: {correctAnswer}</p>
                 </div>
@@ -69,7 +70,7 @@ function Quiz() {
 
             {isCorrectAnswer == true && <div>
 
-                <div className='border p-3 border-green-700 bg-green-200 rounded-lg'>
+                <div className='border p-3 border-green-700 bg-green-200 rounded-lg max-w-[90%] mx-auto'>
                     <h2 className='font-bold text-lg text-green-600'>Correct</h2>
                     <p>Your Answer is Correct!</p>
                 </div>
